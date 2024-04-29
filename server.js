@@ -6,12 +6,7 @@ const PORT = process.env.PORT || 5000;
 
 
 app.use(express.json());
-app.use(cors({
-  origin: 'https://dog-breed-app-omega.vercel.app', // Allow requests from this origin
-  methods: 'GET,POST', // Allow only specific HTTP methods
-  allowedHeaders: 'Content-Type,Authorization', // Allow only specific headers
-  credentials: true, // Allow cookies and authorization headers to be sent
-}));
+app.use(cors());
 
 const DOGBREEDDB_API_KEY = "f6279f4ddbmsh069f02333435c3ap151352jsncced84bc0811"
 const PETFINDER_API_KEY = "FyGKpuRKqsV5w5M8A3VzaeuL51yB05eIuNKByVDsM526hPD99X";
@@ -187,8 +182,7 @@ app.get('/api/id', async (req, res) => {
 
 
 app.get('/', async (req, res) => {
-  console.log("Backend loaded");
-
+  res.json({ message: 'Hello, world!' });
 });
 
 
