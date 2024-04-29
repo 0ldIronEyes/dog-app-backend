@@ -186,6 +186,10 @@ app.get('/api/id', async (req, res) => {
 });
 
 
+app.get('/', async (req, res) => {
+  console.log("Backend loaded");
+
+});
 
 
 
