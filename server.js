@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const axios = require('axios');
-const { default: DogBreedApi } = import('../src/api.js');
 const PORT = process.env.PORT || 5000; 
 
 
