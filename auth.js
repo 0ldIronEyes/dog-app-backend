@@ -24,7 +24,7 @@ function authenticateJWT(req, res, next) {
     }
     return next();
   } catch (err) {
-    console.log("Authentication failed:", err);
+
     return next();
   }
 }

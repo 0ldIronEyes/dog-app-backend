@@ -1,16 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const axios = require('axios');
-const jsonschema = require("jsonschema");
-const {User, DogBreed} = require("./models.js");
-const { createToken } = require("./helpers/tokens");
 const { getPetfinderAccessToken } = require("./helpers/petfinderHelper.js");
 const { authenticateJWT } = require("./auth");
-const { BadRequestError, UnauthorizedError } = require("./expressError");
-const userAuthSchema = require("./userAuth.json");
-const userUpdateSchema = require("./userUpdate.json");
-const userRegisterSchema = require("./userRegister.json");
+
 
 const userRoutes = require("./routes/users.js");
 const petsRoutes = require("./routes/pets.js");

@@ -5,8 +5,8 @@
 const jsonschema = require("jsonschema");
 const axios = require('axios');
 const express = require("express");
-const { BadRequestError } = require("../expressError");
-const {User} = require("../models.js");
+const { BadRequestError, UnauthorizedError } = require("../expressError");
+const User = require("../models/User.js");
 const { createToken } = require("../helpers/tokens");
 const userAuthSchema = require("../userAuth.json");
 const userUpdateSchema = require("../userUpdate.json");
@@ -94,7 +94,6 @@ function ensureCorrectUser(req, res, next) {
         const errs = validator.errors.map(e => e.stack);
         throw new BadRequestError(errs);
       }
-      console.log(req.body);
       try {
         await User.authenticate(req.params.username, req.body.password);
         } catch (err) {

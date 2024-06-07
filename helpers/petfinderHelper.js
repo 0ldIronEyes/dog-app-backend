@@ -1,12 +1,11 @@
 const axios = require('axios');
 
-
-const DOGBREEDDB_API_KEY = "f6279f4ddbmsh069f02333435c3ap151352jsncced84bc0811"
+const DOGBREEDDB_API_KEY = "f6279f4ddbmsh069f02333435c3ap151352jsncced84bc0811";
 const PETFINDER_API_KEY = "FyGKpuRKqsV5w5M8A3VzaeuL51yB05eIuNKByVDsM526hPD99X";
 const SECRET = "kkmUznOGbMAyVPOeoTmgTDJqllXi43MWEPNg3Mvl";
 
 let petfinderAccessToken = null;
-let petfinderTokenExpiration = null
+let petfinderTokenExpiration = null;
 
 const getPetfinderAccessToken = async () => {
   try {
@@ -18,21 +17,21 @@ const getPetfinderAccessToken = async () => {
 
     petfinderAccessToken = response.data.access_token;
     petfinderTokenExpiration = Date.now() + response.data.expires_in * 1000;
+    return petfinderAccessToken;
   } catch (error) {
     console.error('Error fetching Petfinder access token:', error);
   }
 };
-
 
 const isTokenExpired = () => {
   return petfinderTokenExpiration && Date.now() >= petfinderTokenExpiration;
 };
 
 const refreshTokenIfNeeded = async () => {
-  if (isTokenExpired()) {
-  
-    await getPetfinderAccessToken();
+  if (isTokenExpired() || !petfinderAccessToken) {
+    return token = await getPetfinderAccessToken();
   }
+  else return petfinderAccessToken;
 };
 
 const checkAccessToken = async (req, res, next) => {
